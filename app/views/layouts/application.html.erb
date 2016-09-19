@@ -11,6 +11,7 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <h3><%= Settings.instance.name %></h3>
     <%= image_tag "chat_logo.svg", alt: "Chat logo" %>
     <%= yield %>
   </body>

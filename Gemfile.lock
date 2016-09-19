@@ -52,7 +52,11 @@ GEM
     builder (3.2.2)
     byebug (9.0.5)
     concurrent-ruby (1.0.2)
+    config (1.0.0)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.0.0)
     debug_inspector (0.0.2)
+    deep_merge (1.0.1)
     devise (4.2.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -174,6 +178,7 @@ DEPENDENCIES
   annotate
   bootstrap (~> 4.0.0.alpha4)
   byebug
+  config
   devise
   jbuilder (~> 2.5)
   jquery-rails

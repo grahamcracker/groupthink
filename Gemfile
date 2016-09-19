@@ -28,6 +28,9 @@ gem 'redis', '~> 3.0'
 # authentication
 gem 'devise'
 
+# configuration YAML
+gem 'config'
+
 # needs no explanation
 gem 'bootstrap', '~> 4.0.0.alpha4'
 
