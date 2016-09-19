@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="139px" height="139px" viewBox="0 0 139 139" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>chat_logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle id="pink-circle" fill="#FF006B" cx="69.5" cy="69.5" r="69.5"></circle>
+        <g id="dots" transform="translate(30.000000, 60.000000)" fill="#FFFFFF">
+            <circle id="dot1" cx="9.5" cy="9.5" r="9.5"></circle>
+            <circle id="dot2" cx="39.5" cy="9.5" r="9.5"></circle>
+            <circle id="dot3" cx="69.5" cy="9.5" r="9.5"></circle>
+        </g>
+    </g>
+</svg>

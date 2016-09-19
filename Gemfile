@@ -28,6 +28,14 @@ gem 'redis', '~> 3.0'
 # authentication
 gem 'devise'
 
+# needs no explanation
+gem 'bootstrap', '~> 4.0.0.alpha4'
+
+# tether for bootstrap tooltips & popovers
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
