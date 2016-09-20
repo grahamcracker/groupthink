@@ -1,4 +1,4 @@
-# Groupthink
+![Groupthink logo](app/assets/images/groupthink_logo.png)
 
 ### A platform for public digital communications art
 
