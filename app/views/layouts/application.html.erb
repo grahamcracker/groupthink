@@ -27,7 +27,11 @@
 
     <footer class="text-muted">
       <div class="container">
-        <p>Copyright &copy; <%= Time.now.year %> <%= Settings.instance.name %></p>
+        <p>
+          Copyright &copy; <%= Time.now.year %> <%= Settings.instance.name %>
+          |
+          <%= link_to 'Administrator Login', new_user_session_path %>
+        </p>
       </div>
     </footer>
   </body>

@@ -1,24 +1,10 @@
-# README
+# Groupthink
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### A platform for public digital communications art
 
-Things you may want to cover:
+Ruby 2.2, Rails 5
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### Development Roadmap
+* Create character switching apparatus
+* Create basic group chat
+* Lock down signups with invitable: https://github.com/scambra/devise_invitable

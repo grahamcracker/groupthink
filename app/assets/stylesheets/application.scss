@@ -1,6 +1,17 @@
 // Custom bootstrap variables must be set or imported before bootstrap itself.
  @import "bootstrap";
 
+// General styles
+.text-muted a {
+  color: #777;
+
+  &:hover {
+    color: #999;
+  }
+}
+
+// Specific styles
+
 body {
   background: #f7f7f7;
 
