@@ -24,6 +24,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  belongs_to :character
+  belongs_to :character, optional: true
   validates :email, null: false, uniqueness: true
+
+  def character_label
+    character ? character.name : "None"
+  end
 end

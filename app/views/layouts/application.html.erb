@@ -7,16 +7,37 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if notice.present? %>
+      <div class="alert alert-info" role="alert">
+        <%= notice %>
+      </div>
+    <% end %>
 
-    <nav class="navbar navbar-fixed-top navbar-light bg-faded">
+    <% if alert.present? %>
+      <div class="alert alert-danger" role="alert">
+        <%= alert %>
+      </div>
+    <% end %>
+
+    <nav class="navbar navbar-full navbar-light bg-faded">
       <div class="container">
         <%= link_to root_path, class: "navbar-brand" do %>
           <%= image_tag "chat_circle.svg", alt: "Chat logo" %>
           <%= Settings.instance.name %>
+        <% end %>
+
+        <% if user_signed_in? %>
+          <ul class="nav navbar-nav pull-xs-right">
+            <li class="nav-item">
+              Welcome <%= current_user.email %>.
+            </li>
+            <li class="nav-item">
+              Character:
+              <strong><%= current_user.character_label %></strong>
+              (<a href="#">Change</a>)
+            </li>
+          </ul>
         <% end %>
       </div>
     </nav>
@@ -30,7 +51,11 @@
         <p>
           Copyright &copy; <%= Time.now.year %> <%= Settings.instance.name %>
           |
-          <%= link_to 'Administrator Login', new_user_session_path %>
+          <% if user_signed_in? %>
+            <strong><%= link_to 'Logout', destroy_user_session_path, method: :delete %></strong>
+          <% else %>
+            <%= link_to 'Administrator Login', new_user_session_path %>
+          <% end %>
         </p>
       </div>
     </footer>
