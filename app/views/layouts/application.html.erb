@@ -35,7 +35,7 @@
             <li class="nav-item">
               Character:
               <strong><%= current_user.character_label %></strong>
-              (<a href="#">Change</a>)
+              (<%= link_to 'Change', characters_path %>)
             </li>
           </ul>
         <% end %>

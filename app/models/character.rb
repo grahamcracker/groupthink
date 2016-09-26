@@ -11,4 +11,6 @@
 
 class Character < ApplicationRecord
   has_one :user
+
+  validates_presence_of :name, :backstory
 end

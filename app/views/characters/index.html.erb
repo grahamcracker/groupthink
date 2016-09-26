@@ -1,0 +1,37 @@
+<h2>Characters (<%= link_to '+', new_character_path %>)</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>User</th>
+      <th>Controls</th>
+      <th>Backstory</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @characters.each do |character| %>
+      <tr>
+        <td><%= link_to character.name, character %></td>
+        <td>
+          <%= character.user ? character.user.email : "None" %>
+        </td>
+        <td>
+          <%= link_to 'Edit', edit_character_path(character), class: "btn btn-sm btn-outline-warning" %>
+          <% if !character.user %>
+            <%= link_to 'Become', character_become_path(character), class: "btn btn-sm btn-outline-info", method: :post %>
+          <% end %>
+        </td>
+        <td><%= truncate(character.backstory, length: 40) %></td>
+      </tr>
+    <% end %>
+    <% if @characters.empty? %>
+      <tr>
+        <td colspan="4">
+          No characters found! <%= link_to 'Create a new one', new_character_path %>.
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

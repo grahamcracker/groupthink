@@ -26,6 +26,7 @@ class User < ApplicationRecord
 
   belongs_to :character, optional: true
   validates :email, null: false, uniqueness: true
+  validates :character, uniqueness: true
 
   def character_label
     character ? character.name : "None"

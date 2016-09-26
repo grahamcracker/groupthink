@@ -1,0 +1,36 @@
+<%= form_for(character) do |f| %>
+  <% if character.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(character.errors.count, "error") %> prohibited this character from being saved:</h2>
+
+      <ul>
+      <% character.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :backstory %>
+    <%= f.text_area :backstory, rows: 5, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit nil, class: "btn btn-outline btn-primary" %>
+
+    <% if character.persisted? %>
+      <%= link_to 'Delete Character',
+        character_path(character),
+        class: "btn btn-outline btn-warning",
+        method: :delete,
+        data: {confirm: "Are you sure you want to delete this character?"}
+      %>
+    <% end %>
+  </div>
+<% end %>

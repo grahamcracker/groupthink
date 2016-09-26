@@ -2,5 +2,5 @@
 // All this logic will automatically be available in application.js.
 
 $(document).on('turbolinks:load', function() {
-  $("body > div.alert").delay(12 * 1000).slideUp();
+  $("body > div.alert").delay(8 * 1000).slideUp();
 });
