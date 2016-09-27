@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :groups, only: [:show] do
     post :join, :leave
   end
+  resources :messages, only: [:create]
 end

@@ -1,0 +1,7 @@
+<%= form_for message, remote: true, authenticity_token: true do |f| %>
+  <%= f.text_field :body, class: "form-control", data: {input: "message"}%>
+
+  <%= f.hidden_field :character_id, value: character.id %>
+  <%= f.hidden_field :group_id, value: group.id %>
+  <%= f.submit "send", style: "display: none", data: {send: "message"}%>
+<% end %>

@@ -22,3 +22,18 @@
     no members yet!
   <% end %>
 </p>
+
+<div class="panel panel-default">
+  <% if @group.messages.any? %>
+    <div class="panel-body" id="messages">
+      <%= render partial: 'messages/message', collection: @group.messages%>
+    </div>
+  <%else%>
+    <div class="panel-body hidden" id="messages">
+    </div>
+  <%end%>
+</div>
+
+<% if user_signed_in? %>
+  <%= render partial: 'messages/form', locals: {message: @message, group: @group, character: current_user.character }%>
+<% end %>
