@@ -10,5 +10,10 @@
 
 class Group < ApplicationRecord
   has_many :group_characters, dependent: :destroy
+  has_many :characters, class_name: 'Character', through: :group_characters, source: :character
   has_many :messages, dependent: :destroy
+
+  def has?(user)
+    characters.include?(user.character)
+  end
 end

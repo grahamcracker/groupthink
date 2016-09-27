@@ -1,0 +1,24 @@
+<h3>
+  <%= @group.name %>
+  <% if user_signed_in? %>
+    <% if @group.has?(current_user) %>
+      <%= link_to "Leave group",
+        group_leave_path(@group),
+        class: "btn btn-sm btn-outline-warning",
+        method: :post %>
+    <% else %>
+      <%= link_to "Join as #{current_user.character.name}",
+        group_join_path(@group),
+        class: "btn btn-sm btn-primary",
+        method: :post %>
+    <% end %>
+  <% end %>
+</h3>
+<p>
+  Members:
+  <% if @group.characters.each do |character| %>
+    <span class="tag tag-pill tag-default"><%= character.name %></span>
+  <% end.empty? %>
+    no members yet!
+  <% end %>
+</p>

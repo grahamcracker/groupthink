@@ -11,6 +11,8 @@
 
 class Character < ApplicationRecord
   has_one :user
+  has_many :messages
+  has_many :groups, through: :group_characters
 
   validates_presence_of :name, :backstory
 end

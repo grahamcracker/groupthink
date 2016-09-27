@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   resources :characters do
     post :become
   end
+  resources :groups, only: [:show] do
+    post :join, :leave
+  end
 end

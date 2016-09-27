@@ -5,6 +5,6 @@
 Ruby 2.2, Rails 5
 
 #### Development Roadmap
-* Create character switching apparatus
 * Create basic group chat
+* Character icons
 * Lock down signups with invitable: https://github.com/scambra/devise_invitable
