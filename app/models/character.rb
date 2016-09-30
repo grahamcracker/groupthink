@@ -15,4 +15,9 @@ class Character < ApplicationRecord
   has_many :groups, through: :group_characters
 
   validates_presence_of :name, :backstory
+
+  def as_json(options={})
+    options[:only] ||= [:id, :name]
+    super
+  end
 end

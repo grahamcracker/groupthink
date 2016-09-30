@@ -1,4 +1,8 @@
-#group-container {
+#group-component, .group-container {
+  height: 100%;
+}
+
+#group-component > .group-container {
   .character-list {
     > span {
       display: inline-block;
@@ -6,8 +10,10 @@
     }
   }
 
-  #messages {
+  .messages {
     margin-top: 1rem;
+    height: calc(100% - 100px);
+    overflow-y: auto;
 
     .message {
       margin-bottom: .3rem;

@@ -15,9 +15,13 @@
   <% end %>
 </h3>
 
-<%= react_component('Group',
-  id: @group.id,
-  initialCharacters: @group.characters,
-  initialMessages: @group.messages,
-  in_group: user_signed_in? && @group.has?(current_user)
+<%= react_component(
+  'Group',
+  {
+    id: @group.id,
+    initialCharacters: @group.characters,
+    initialMessages: @group.messages,
+    in_group: user_signed_in? && @group.has?(current_user)
+  },
+  { id: "group-component" }
 ) %>

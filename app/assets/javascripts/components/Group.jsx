@@ -52,10 +52,8 @@ var GroupMessageList = React.createClass({
     }
 
     return (
-      <div className="panel panel-default">
-        <div className="panel-body" id="messages">
-          {messageListing}
-        </div>
+      <div className="messages">
+        {messageListing}
       </div>
     );
   }
@@ -99,8 +97,18 @@ var Group = React.createClass({
     });
   },
 
+  scrollToBottom() {
+    let messagesNode = ReactDOM.findDOMNode(this.refs.messages);
+    messagesNode.scrollTop = messagesNode.scrollHeight;
+  },
+
   componentDidMount() {
     this.subscribe();
+    this.scrollToBottom();
+  },
+
+  componentDidUpdate(){
+    this.scrollToBottom();
   },
 
   formKeyPressed(e) {
@@ -131,9 +139,9 @@ var Group = React.createClass({
     }
 
     return (
-      <div id="group-container">
+      <div className="group-container">
         <GroupCharacterList characters={this.state.characters} />
-        <GroupMessageList messages={this.state.messages} />
+        <GroupMessageList messages={this.state.messages} ref="messages"/>
         {form}
       </div>
     );

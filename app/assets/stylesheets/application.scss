@@ -18,6 +18,14 @@ div.alert {
 
 // Specific styles
 
+html, body, #main > .container {
+  height: 100%;
+}
+
+#main {
+  height: calc(100% - 200px);
+}
+
 body {
   background: #f7f7f7;
 
@@ -30,7 +38,6 @@ body {
   }
 
   #main {
-    min-height: 300px;
     border-radius: 1rem;
     background-color: #fff;
     padding: 2rem;
