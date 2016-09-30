@@ -70,7 +70,8 @@ var Group = React.createClass({
   getInitialState() {
     return {
       characters: this.props.initialCharacters,
-      messages: this.props.initialMessages
+      messages: this.props.initialMessages,
+      scrollOnUpdate: true
     }
   },
 
@@ -98,17 +99,29 @@ var Group = React.createClass({
   },
 
   scrollToBottom() {
-    let messagesNode = ReactDOM.findDOMNode(this.refs.messages);
-    messagesNode.scrollTop = messagesNode.scrollHeight;
+    this.messagesNode.scrollTop = this.messagesNode.scrollHeight;
+  },
+
+  handleScroll(e) {
+    this.setState({scrollOnUpdate: e.target.scrollTop == (e.target.scrollHeight - e.target.offsetHeight)})
   },
 
   componentDidMount() {
     this.subscribe();
+
+    this.messagesNode = ReactDOM.findDOMNode(this.refs.messages);
     this.scrollToBottom();
+    this.messagesNode.addEventListener('scroll', this.handleScroll);
+  },
+
+  componentWillUnmount() {
+    this.messagesNode.removeEventListener('scroll', this.handleScroll);
   },
 
   componentDidUpdate(){
-    this.scrollToBottom();
+    if(this.state.scrollOnUpdate) {
+      this.scrollToBottom();
+    }
   },
 
   formKeyPressed(e) {
