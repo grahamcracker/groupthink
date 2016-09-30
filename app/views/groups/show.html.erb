@@ -20,7 +20,7 @@
   {
     id: @group.id,
     initialCharacters: @group.characters,
-    initialMessages: @group.messages,
+    initialMessages: @group.messages.order('created_at').last(60),
     in_group: user_signed_in? && @group.has?(current_user)
   },
   { id: "group-component" }
