@@ -25,15 +25,16 @@
 
 <div class="panel panel-default">
   <% if @group.messages.any? %>
-    <div class="panel-body" id="messages">
+    <div class="panel-body" id="messages" data-group-id="<%= @group.id %>">
       <%= render partial: 'messages/message', collection: @group.messages%>
     </div>
-  <%else%>
-    <div class="panel-body hidden" id="messages">
-    </div>
-  <%end%>
+  <% else %>
+    No messages found!
+  <% end %>
 </div>
 
-<% if user_signed_in? %>
-  <%= render partial: 'messages/form', locals: {message: @message, group: @group, character: current_user.character }%>
+<% if user_signed_in? && @group.has?(current_user) %>
+  <form>
+    <input type="text" data-behavior="group-speak" class="form-control" />
+  </form>
 <% end %>
