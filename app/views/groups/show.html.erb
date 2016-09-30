@@ -14,27 +14,10 @@
     <% end %>
   <% end %>
 </h3>
-<p>
-  Members:
-  <% if @group.characters.each do |character| %>
-    <span class="tag tag-pill tag-default"><%= character.name %></span>
-  <% end.empty? %>
-    no members yet!
-  <% end %>
-</p>
 
-<div class="panel panel-default">
-  <% if @group.messages.any? %>
-    <div class="panel-body" id="messages" data-group-id="<%= @group.id %>">
-      <%= render partial: 'messages/message', collection: @group.messages%>
-    </div>
-  <% else %>
-    No messages found!
-  <% end %>
-</div>
-
-<% if user_signed_in? && @group.has?(current_user) %>
-  <form>
-    <input type="text" data-behavior="group-speak" class="form-control" />
-  </form>
-<% end %>
+<%= react_component('Group',
+  id: @group.id,
+  initialCharacters: @group.characters,
+  initialMessages: @group.messages,
+  in_group: user_signed_in? && @group.has?(current_user)
+) %>

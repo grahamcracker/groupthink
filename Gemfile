@@ -34,6 +34,9 @@ gem 'config'
 # needs no explanation
 gem 'bootstrap', '~> 4.0.0.alpha4'
 
+# react
+gem 'react-rails'
+
 # tether for bootstrap tooltips & popovers
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'

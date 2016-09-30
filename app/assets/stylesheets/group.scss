@@ -1,3 +1,16 @@
-// Place all the styles related to the Group controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#group-container {
+  .character-list {
+    > span {
+      display: inline-block;
+      margin-left: .5rem;
+    }
+  }
+
+  #messages {
+    margin-top: 1rem;
+
+    .message {
+      margin-bottom: .3rem;
+    }
+  }
+}

@@ -14,4 +14,10 @@ class Message < ApplicationRecord
   belongs_to :character
   belongs_to :group
   validates :body, presence: true
+
+  def as_json(options={})
+    options[:only] ||= [:id, :body]
+    options[:include] ||= {character: { only: [:name] }}
+    super
+  end
 end
