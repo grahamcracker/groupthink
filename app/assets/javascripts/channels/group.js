@@ -25,10 +25,13 @@ $(document).on('turbolinks:load', function() {
   });
 
   $(document).on('keypress', '[data-behavior~=group-speak]', function(e){
+    var body = e.target.value;
+
     if(e.keyCode == 13) {
-      debugger;
-      App.group.speak(e.target.value);
-      e.target.value = "";
+      if(body != "") {
+        App.group.speak(body);
+        e.target.value = "";
+      }  
       e.preventDefault();
     }
   });
