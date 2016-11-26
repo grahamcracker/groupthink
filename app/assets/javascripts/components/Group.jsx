@@ -140,7 +140,7 @@ var Group = React.createClass({
   renderForm() {
     return (
       <form>
-        <input type="text" className="form-control" onKeyPress={this.formKeyPressed}/>
+        <input type="text" className="form-control" autoFocus onKeyPress={this.formKeyPressed}/>
       </form>
     )
   },
