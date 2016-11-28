@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
   resources :groups, only: [:show] do
     post :join, :leave
+    get :older_messages
   end
   resources :messages, only: [:create]
 end

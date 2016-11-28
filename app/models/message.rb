@@ -16,7 +16,7 @@ class Message < ApplicationRecord
   validates :body, presence: true
 
   def as_json(options={})
-    options[:only] ||= [:id, :body]
+    options[:only] ||= [:id, :body, :created_at]
     options[:include] ||= {character: { only: [:name] }}
     super
   end

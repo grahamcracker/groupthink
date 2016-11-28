@@ -64,14 +64,16 @@ var Group = React.createClass({
     id: React.PropTypes.number,
     initialCharacters: React.PropTypes.array,
     initialMessages: React.PropTypes.array,
-    in_group: React.PropTypes.bool
+    in_group: React.PropTypes.bool,
+    older_messages_url: React.PropTypes.string
   },
 
   getInitialState() {
     return {
       characters: this.props.initialCharacters,
       messages: this.props.initialMessages,
-      scrollOnUpdate: true
+      scrollOnUpdate: true,
+      loadingOlderMessages: false
     }
   },
 
@@ -102,8 +104,30 @@ var Group = React.createClass({
     this.messagesNode.scrollTop = this.messagesNode.scrollHeight;
   },
 
+  loadOlderMessages() {
+    $.ajax({
+      type: 'GET',
+      data: { older_time: this.state.messages[0].created_at },
+      url: this.props.older_messages_url,
+      dataType: 'json',
+      cache: false,
+      success: function(data) {
+        this.setState({
+          messages: data.concat(this.state.messages)
+        });
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(status, err.toString());
+      }.bind(this)
+    });
+  },
+
   handleScroll(e) {
     this.setState({scrollOnUpdate: e.target.scrollTop == (e.target.scrollHeight - e.target.offsetHeight)})
+
+    if(e.target.scrollTop == 0 && !this.state.loadingOlderMessages) {
+      this.loadOlderMessages();
+    }
   },
 
   componentDidMount() {
