@@ -26,7 +26,7 @@
     initialCharacters: @group.characters,
     initialMessages: @group.messages.order('created_at').last(60),
     in_group: user_signed_in? && @group.has?(current_user),
-    current_user_id: current_user.id,
+    current_user_id: user_signed_in? ? current_user.id : 0,
     older_messages_url: group_older_messages_path(@group)
   },
   { id: "group-component" }
