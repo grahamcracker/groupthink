@@ -87,6 +87,9 @@ let Group = React.createClass({
     this.setState({
       messages: this.state.messages.concat([message])
     });
+
+    if(message.user.id === this.props.current_user_id)
+      this.scrollToBottom();
   },
 
   subscribe() {
