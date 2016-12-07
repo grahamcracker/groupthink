@@ -1,4 +1,4 @@
-var GroupCharacterList = React.createClass({
+let GroupCharacterList = React.createClass({
   propTypes: {
     characters: React.PropTypes.array
   },
@@ -28,9 +28,10 @@ var GroupCharacterList = React.createClass({
   }
 });
 
-var GroupMessageList = React.createClass({
+let GroupMessageList = React.createClass({
   propTypes: {
-    messages: React.PropTypes.array
+    messages: React.PropTypes.array,
+    loading: React.PropTypes.object
   },
 
   renderMessage(message) {
@@ -53,19 +54,23 @@ var GroupMessageList = React.createClass({
 
     return (
       <div className="messages">
+        <div className="loading-container">
+          {this.props.loading}
+        </div>
         {messageListing}
       </div>
     );
   }
 });
 
-var Group = React.createClass({
+let Group = React.createClass({
   propTypes: {
     id: React.PropTypes.number,
     initialCharacters: React.PropTypes.array,
     initialMessages: React.PropTypes.array,
     in_group: React.PropTypes.bool,
-    older_messages_url: React.PropTypes.string
+    older_messages_url: React.PropTypes.string,
+    current_user_id: React.PropTypes.number
   },
 
   getInitialState() {
@@ -73,7 +78,8 @@ var Group = React.createClass({
       characters: this.props.initialCharacters,
       messages: this.props.initialMessages,
       scrollOnUpdate: true,
-      loadingOlderMessages: false
+      loadingOlderMessages: false,
+      noMoreMessages: false
     }
   },
 
@@ -85,6 +91,7 @@ var Group = React.createClass({
 
   subscribe() {
     let receivedMessage = this.receivedMessage;
+
     App.group = App.cable.subscriptions.create({
       channel: "GroupChannel",
       group_id: this.props.id
@@ -105,6 +112,13 @@ var Group = React.createClass({
   },
 
   loadOlderMessages() {
+    if(this.state.noMoreMessages)
+      return;
+
+    this.setState({
+      loadingOlderMessages: true
+    });
+
     $.ajax({
       type: 'GET',
       data: { older_time: this.state.messages[0].created_at },
@@ -112,12 +126,28 @@ var Group = React.createClass({
       dataType: 'json',
       cache: false,
       success: function(data) {
-        this.setState({
-          messages: data.concat(this.state.messages)
-        });
+        if(data.length) {
+          let beforeHeight = this.messagesNode.scrollHeight;
+          let beforeScroll = this.messagesNode.scrollTop;
+
+          this.setState({
+            messages: data.concat(this.state.messages)
+          });
+
+          this.messagesNode.scrollTop = this.messagesNode.scrollHeight - beforeHeight + beforeScroll;
+        } else {
+          this.setState({
+            noMoreMessages: true
+          });
+        }
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(status, err.toString());
+      }.bind(this),
+      complete: function(){
+        this.setState({
+          loadingOlderMessages: false
+        });
       }.bind(this)
     });
   },
@@ -170,15 +200,22 @@ var Group = React.createClass({
   },
 
   render() {
-    let form;
-    if(this.props.in_group) {
+    let form, loadingBar;
+
+    if(this.props.in_group){
       form = this.renderForm();
+    }
+
+    if(this.state.loadingOlderMessages){
+      loadingBar = (
+          <div className="loading"></div>
+      );
     }
 
     return (
       <div className="group-container">
         <GroupCharacterList characters={this.state.characters} />
-        <GroupMessageList messages={this.state.messages} ref="messages"/>
+        <GroupMessageList messages={this.state.messages} loading={loadingBar} ref="messages"/>
         {form}
       </div>
     );

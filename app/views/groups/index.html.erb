@@ -4,7 +4,9 @@
   <% @groups.each do |group| %>
     <a href="<%= group_path(group) %>" class="list-group-item list-group-item-action">
       <h5 class="list-group-item-heading"><%= group.name %></h5>
-      <p class="list-group-item-text">Last message <%= time_ago_in_words(group.messages.last.created_at) %> ago</p>
+      <% if group.messages.present? %>
+        <p class="list-group-item-text">Last message <%= time_ago_in_words(group.messages.last.created_at) %> ago</p>
+      <% end %>
     </a>
   <% end %>
   <% if @groups.empty? %>

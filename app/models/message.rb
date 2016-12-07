@@ -17,7 +17,11 @@ class Message < ApplicationRecord
 
   def as_json(options={})
     options[:only] ||= [:id, :body, :created_at]
-    options[:include] ||= {character: { only: [:name] }}
+    options[:include] ||= {
+      character: {
+        only: [:name]
+      }
+    }
     super
   end
 end

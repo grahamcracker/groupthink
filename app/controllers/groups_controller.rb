@@ -24,7 +24,7 @@ class GroupsController < ApplicationController
   end
 
   def older_messages
-    render json: @group.messages.where('created_at < ?', params[:older_time]).limit(60)
+    render json: @group.messages.where('created_at < ?', params[:older_time]).order('created_at DESC').limit(60).reverse
   end
 
   private

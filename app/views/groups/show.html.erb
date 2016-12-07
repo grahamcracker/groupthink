@@ -6,11 +6,15 @@
         group_leave_path(@group),
         class: "btn btn-sm btn-outline-warning",
         method: :post %>
-    <% else %>
+    <% elsif current_user.character%>
       <%= link_to "Join as #{current_user.character.name}",
         group_join_path(@group),
         class: "btn btn-sm btn-primary",
         method: :post %>
+    <% else %>
+      <%= link_to "You're not in character! Click to change.",
+        characters_path,
+        class: "btn btn-sm btn-warning" %>
     <% end %>
   <% end %>
 </h3>
@@ -22,6 +26,7 @@
     initialCharacters: @group.characters,
     initialMessages: @group.messages.order('created_at').last(60),
     in_group: user_signed_in? && @group.has?(current_user),
+    current_user_id: current_user.id,
     older_messages_url: group_older_messages_path(@group)
   },
   { id: "group-component" }
