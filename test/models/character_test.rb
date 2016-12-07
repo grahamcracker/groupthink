@@ -3,8 +3,8 @@
 # Table name: characters
 #
 #  id         :integer          not null, primary key
-#  name       :string
-#  backstory  :string
+#  name       :string(255)
+#  backstory  :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

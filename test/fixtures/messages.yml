@@ -3,11 +3,12 @@
 # Table name: messages
 #
 #  id           :integer          not null, primary key
-#  body         :string
+#  body         :string(255)
 #  character_id :integer
 #  group_id     :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  user_id      :integer          not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

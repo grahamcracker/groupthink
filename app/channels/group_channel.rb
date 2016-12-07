@@ -10,7 +10,7 @@ class GroupChannel < ApplicationCable::Channel
 
   def speak(data)
     if current_user
-      MessageBroadcastJob.perform_later data['message'], data['group_id'], current_user.character.id
+      MessageBroadcastJob.perform_later data['message'], data['group_id'], current_user.character.id, current_user.id
     end
   end
 end
