@@ -23,6 +23,9 @@ set :repo_url, 'http://github.com/grahamcracker/groupthink/'
 # Default value for :pty is false
 # set :pty, true
 
+set :migration_role, :app
+set :migration_servers, -> { primary(fetch(:migration_role)) }
+
 # Default value for :linked_files is []
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads'
 append :linked_files, 'config/database.yml', 'config/secrets.yml'
