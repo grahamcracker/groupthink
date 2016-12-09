@@ -27,6 +27,11 @@ class Message < ApplicationRecord
         only: [:id, :email]
       }
     }
+    options[:methods] ||= [:formatted_time]
     super
+  end
+
+  def formatted_time
+    self.created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%Y-%m-%d at %l:%M %p")
   end
 end

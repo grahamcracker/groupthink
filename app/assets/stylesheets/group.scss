@@ -20,6 +20,19 @@ $loading-expanded-height: 1.5em;
 
     .message {
       margin-bottom: .3rem;
+
+      > span.time {
+        margin-left: 1em;
+        color: #999;
+        visibility: hidden;
+        display: inline-block;
+      }
+
+      &:hover {
+        > span.time {
+          visibility: visible;
+        }
+      }
     }
   }
 

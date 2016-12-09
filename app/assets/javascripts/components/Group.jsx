@@ -39,6 +39,7 @@ let GroupMessageList = React.createClass({
       <div className="message" key={message.id}>
         <strong>{message.character.name}</strong>:
         <span> {message.body}</span>
+        <span className="time">{message.formatted_time}</span>
       </div>
     );
   },
