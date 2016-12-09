@@ -124,6 +124,9 @@ GEM
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
+    passenger (5.0.30)
+      rack
+      rake (>= 0.8.1)
     puma (3.6.2)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -227,6 +230,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   mysql2
+  passenger
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-assets-tether (>= 1.1.0)!
@@ -242,4 +246,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.13.0
+   1.13.6
