@@ -21,12 +21,12 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
   belongs_to :character, optional: true
   validates :email, null: false, uniqueness: true
-  validates :character, uniqueness: true
+  validates :character, uniqueness: true, allow_blank: true
 
   def character_label
     character ? character.name : "None"

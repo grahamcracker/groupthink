@@ -26,7 +26,8 @@ gem 'redis', '~> 3.0'
 # gem 'bcrypt', '~> 3.1.7'
 
 # authentication
-gem 'devise'
+gem 'devise', '~> 4.2'
+gem 'devise_invitable', '~> 1.7.0'
 
 # configuration YAML
 gem 'config'
